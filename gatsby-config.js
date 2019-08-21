@@ -1,8 +1,7 @@
 module.exports = {
   siteMetadata: {
     title: `🦔 ~ Erizo's Blog`,
-    description: `Wed development, devops, automation, javascript, powershell`,
-    author: `Erizo-dev`,
+    description: `A simple blog about Web development, DevOps, automation, javascript, and PowerShell. Aims at providing thoughts and example about programming environments and daily programmer's life.`,    author: `Erizo-dev`,
   },
   pathPrefix: "/erizo-dev-blog",
   plugins: [
