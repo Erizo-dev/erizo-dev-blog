@@ -5,7 +5,7 @@ description: "An unpredictable path because you will never know what is hiding u
 thumbnail: "./postImages/learning-path.jpg"
 ---
 
- ## I thought I knew it worked
+ ## I thought I knew how it worked
 
  ![Photo by Matthew Feeney on Unsplash](./postImages/learning-path.jpg)
 
