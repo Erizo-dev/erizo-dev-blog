@@ -113,5 +113,6 @@ You can consume this context anywhere, using the appropriate hook for instance.
 ```javascript
 const ctx = React.useContext(myContext)
 ```
-I hope this post can be helpful to anyone trying to make @material-ui and gatsby work nicely together.s
+I hope this post can be helpful to anyone trying to make @material-ui and gatsby work nicely together.
+
 

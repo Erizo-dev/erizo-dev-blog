@@ -7,15 +7,11 @@ import Container from "@material-ui/core/Container"
 import { withStyles } from "@material-ui/styles"
 import { withTheme } from '@material-ui/styles';
 
-import teal from '@material-ui/core/colors/teal'
-import grey from '@material-ui/core/colors/grey'
-
 
 const styles = theme => {
   return {
   root : {
     marginTop: "80px",
-
     padding: '18px 36px',
     backgroundColor: theme.palette.background.paper
   },
@@ -82,7 +78,7 @@ class BlogPostTemplate extends React.Component {
   }
 }
 
-export default withTheme(withStyles(styles)(BlogPostTemplate))
+export default withStyles(styles)(withTheme(BlogPostTemplate))
 
 export const pageQuery = graphql`
   query BlogPostBySlug($slug: String!) {
