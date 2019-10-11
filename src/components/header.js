@@ -16,7 +16,8 @@ import { myContext} from "../Context/myContext"
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
-    backgroundColor: teal[200],
+    //backgroundColor: teal[200],
+    backgroundColor: grey[200],
     color: grey[900],
     paddingBottom: "1rem"
   },
@@ -55,7 +56,7 @@ const Header = ({ siteTitle }) => {
     <AppBar className={classes.root}>
 
         <Toolbar className={classes.navBar}>
-            <Typography variant="h2">
+            <Typography variant="h2" component="h1">
               <Link to="/" className={classes.navLink}>
                 {siteTitle}
               </Link>

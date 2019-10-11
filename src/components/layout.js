@@ -31,7 +31,9 @@ const useStyles = makeStyles(theme => {
       marginTop: "3rem",
       display: "block",
       width: "100%",
-      backgroundColor: teal[600],
+      // backgroundColor: teal[600],
+      backgroundColor: grey[600],
+
       height: '200px',
       overflow: 'hidden',
 
@@ -41,7 +43,9 @@ const useStyles = makeStyles(theme => {
       width: "100%",
       margin: "O",
       borderRadius: "0",
-      backgroundColor: teal[100]
+      // backgroundColor: teal[100]
+      backgroundColor: grey[50]
+
       
       
     },
@@ -49,7 +53,9 @@ const useStyles = makeStyles(theme => {
       width: '100%',
       overflow: 'hidden',
       transform: 'skew(0deg, -2deg) translateY(55px)',
-      backgroundColor: teal[200],
+      // backgroundColor: teal[200],
+      backgroundColor: grey[200],
+
       height: '68px',
       padding: '1rem',
       display: 'flex',

@@ -6,6 +6,7 @@ import SEO from "../components/seo"
 import Container from "@material-ui/core/Container"
 import { withStyles } from "@material-ui/styles"
 import { withTheme } from '@material-ui/styles';
+import Typography from "@material-ui/core/Typography"
 
 
 const styles = theme => {
@@ -39,7 +40,7 @@ class BlogPostTemplate extends React.Component {
             description={post.frontmatter.description || post.excerpt}
             
           />
-          <h1>{post.frontmatter.title}</h1>
+          <Typography variant="h3" component="h2">{post.frontmatter.title}</Typography>
           <p>{post.frontmatter.date}</p>
           <p>
             Appetite required : {"🍰".repeat(post.timeToRead)} -{" "}

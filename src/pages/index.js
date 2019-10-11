@@ -18,6 +18,11 @@ import { useTheme } from '@material-ui/styles';
 
 const useStyles = makeStyles(theme => {
   return {
+  subTitle: {
+    marginTop: "100px",
+    display: 'block',
+    color: "#777",
+  },
   postsContainer: {
     maxWidth: "800px",
     marginTop: "48px"
@@ -52,7 +57,9 @@ const IndexPage = props => {
     <Layout>
       <SEO title="Home" />
       <h2>Erizo's developer blog</h2>
-
+      <Typography className={classes.subTitle} variant="paragraph">Here are my latest blog posts as a developer.
+      <br />
+         I hope you can find some ideas there.Last update: changed theme main color from teal to grey!</Typography>
       <div className={classes.postsContainer}>
         {posts.map(({ node }) => {
           const title = node.frontmatter.title || node.fields.slug
@@ -68,7 +75,7 @@ const IndexPage = props => {
                     objectFit="scale-down"
                   />
                 )}
-                  <h3>{title}</h3>
+                  <Typography variant="h5" component="h2">{title}</Typography>
                 </Link>
 
                 <small>{node.frontmatter.date}</small>
