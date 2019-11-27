@@ -18,6 +18,8 @@ import { makeStyles } from "@material-ui/styles"
 import teal from '@material-ui/core/colors/teal'
 import grey from '@material-ui/core/colors/grey'
 
+import CookieModal from "./cookies-modal"
+
 
 
 import {useTheme} from "@material-ui/styles"
@@ -81,6 +83,8 @@ const Layout = ({ children }) => {
   const classes = useStyles()
 
   return (
+    <>
+  <CookieModal/>
       <Paper className={classes.paper}>
         <Header
           siteTitle={data.site.siteMetadata.title}
@@ -99,6 +103,7 @@ const Layout = ({ children }) => {
             </div>
           </footer>
       </Paper>
+      </>
   )
 }
 
