@@ -57,7 +57,7 @@ const IndexPage = props => {
     <Layout>
       <SEO title="Home" />
       <h2>Erizo's developer blog</h2>
-      <Typography className={classes.subTitle} variant="paragraph">Here are my latest blog posts as a developer.
+      <Typography className={classes.subTitle} variant="body1">Here are my latest blog posts as a developer.
       <br />
          I hope you can find some ideas there.Last update: changed theme main color from teal to grey!</Typography>
       <div className={classes.postsContainer}>

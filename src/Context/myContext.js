@@ -1,9 +1,13 @@
-import React from "react"
+import React, {useState} from "react"
 
 import { ThemeProvider } from "@material-ui/styles"
 import { createMuiTheme } from "@material-ui/core/styles"
 
 import useLocalStorage from "../hooks/UseLocalStorage"
+
+
+import {useGdpr} from "../hooks/UseGdpr"
+
 
 const lightTheme = createMuiTheme({
   palette: {
@@ -19,6 +23,14 @@ const darkTheme = createMuiTheme({
 const defaultState = {
   theme: false,
   toggleDarkMode: () => {},
+  modalOpen: false,
+  preferences: {
+    rememberPreferences: false,
+    gaEnabled: false
+  },
+  setModalOpen : () => {},
+  setPreferences : () => {},
+
 }
 
 export const myContext = React.createContext(defaultState)
@@ -28,12 +40,18 @@ export const myProvider = props => {
   const toggleDarkMode = () => {
     setTheme(!theme)
   }
+  const [preferences, setPreferences] = useGdpr()
+  const [modalOpen, setModalOpen] = useState((!preferences.rememberPreferences))
 
   return (
     <ThemeProvider theme={theme ? lightTheme : darkTheme}>
       <myContext.Provider value={{
           theme,
-          toggleDarkMode
+          toggleDarkMode,
+          modalOpen,
+          preferences,
+          setModalOpen,
+          setPreferences
       }}>
       {props.children}
       </myContext.Provider>

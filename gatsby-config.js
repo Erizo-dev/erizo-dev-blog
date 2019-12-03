@@ -62,8 +62,8 @@ module.exports = {
         name: `my-blog`,
         short_name: `starter`,
         start_url: `/`,
-        background_color: `#663399`,
-        theme_color: `#663399`,
+        background_color: ` #EEEEEE`,
+        theme_color: ` #EEEEEE`,
         display: `minimal-ui`,
         icon: `src/images/erizo-icon.png`, // This path is relative to the root of the site.
       },
