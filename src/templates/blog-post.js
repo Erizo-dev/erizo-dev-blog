@@ -18,10 +18,18 @@ const styles = theme => {
   },
 
   markdown : {
-    '& p' : {
-      
+    '& p' : {   
       textIndent: "24px",
     },
+    '& code[class*="language-"]' : {   
+      fontSize: "0.8rem",
+    },
+    '& pre[class*="language-"]' : {   
+      fontSize: "0.8rem",
+    },
+
+
+
 
   }
 }}
