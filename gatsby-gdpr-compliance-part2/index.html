@@ -37,12 +37,13 @@ I have found this library rather convenient as it provides many ways to interact
 <h2>The useGdpr</h2>
 <p>I have chosen to encapsulate the logic of our cookie manipulations in a custom hook. It will allow us, in our components to set or reset the preferences of the users regarding their privacy.</p>
 <div class="gatsby-highlight" data-language="javascript"><pre class="language-javascript"><code class="language-javascript"><span class="token comment">// useGdpr</span>
+<span class="token keyword">const</span> cookieOPtions <span class="token operator">=</span>  <span class="token punctuation">{</span> path<span class="token punctuation">:</span> <span class="token string">"/"</span><span class="token punctuation">,</span> maxAge<span class="token punctuation">:</span> <span class="token number">3600</span> <span class="token operator">*</span><span class="token number">24</span> <span class="token operator">*</span> <span class="token number">30</span> <span class="token operator">*</span><span class="token number">13</span><span class="token punctuation">}</span>
+
 <span class="token keyword">export</span>  <span class="token keyword">function</span> <span class="token function">useGdpr</span><span class="token punctuation">(</span><span class="token parameter">initialPreferences</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
 
     <span class="token keyword">const</span> <span class="token punctuation">[</span>cookies<span class="token punctuation">,</span> setCookie<span class="token punctuation">,</span> removeCookie<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">useCookies</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
 
     <span class="token keyword">const</span> <span class="token punctuation">[</span>storedPreferences<span class="token punctuation">,</span> setStoredPreferences<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">useState</span><span class="token punctuation">(</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
-        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'pref cookies'</span><span class="token punctuation">,</span> cookies<span class="token punctuation">[</span><span class="token string">"ga-pref-set"</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
         <span class="token keyword">return</span> <span class="token punctuation">{</span>
             rememberPreferences <span class="token punctuation">:</span> cookies<span class="token punctuation">[</span><span class="token string">"ga-pref-set"</span><span class="token punctuation">]</span> <span class="token operator">!==</span> <span class="token keyword">undefined</span><span class="token punctuation">,</span>
             gaEnabled<span class="token punctuation">:</span> cookies<span class="token punctuation">[</span><span class="token string">"ga-pref-set"</span><span class="token punctuation">]</span>  <span class="token operator">===</span> <span class="token string">"allow-ga"</span>
@@ -52,6 +53,7 @@ I have found this library rather convenient as it provides many ways to interact
   <span class="token keyword">const</span> <span class="token function-variable function">setPreferences</span> <span class="token operator">=</span> <span class="token parameter">pref</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
       <span class="token keyword">try</span> <span class="token punctuation">{</span>
           <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>pref<span class="token punctuation">.</span>rememberPreferences<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
             <span class="token function">removeCookie</span><span class="token punctuation">(</span><span class="token string">"_ga"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
             <span class="token function">removeCookie</span><span class="token punctuation">(</span><span class="token string">"test-opt-in"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
             <span class="token function">removeCookie</span><span class="token punctuation">(</span><span class="token string">'ga-pref-set'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -61,9 +63,10 @@ I have found this library rather convenient as it provides many ways to interact
           <span class="token punctuation">}</span>
           <span class="token keyword">else</span> 
           <span class="token punctuation">{</span>
+
             <span class="token keyword">if</span> <span class="token punctuation">(</span>pref<span class="token punctuation">.</span>gaEnabled<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-                <span class="token function">setCookie</span><span class="token punctuation">(</span><span class="token string">"test-opt-in"</span><span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-                <span class="token function">setCookie</span><span class="token punctuation">(</span><span class="token string">"ga-pref-set"</span><span class="token punctuation">,</span> <span class="token string">"allow-ga"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token function">setCookie</span><span class="token punctuation">(</span><span class="token string">"test-opt-in"</span><span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">,</span> cookieOPtions<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token function">setCookie</span><span class="token punctuation">(</span><span class="token string">"ga-pref-set"</span><span class="token punctuation">,</span> <span class="token string">"allow-ga"</span><span class="token punctuation">,</span> cookieOPtions<span class="token punctuation">)</span><span class="token punctuation">;</span>
                 <span class="token function">setStoredPreferences</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
                     gaEnabled<span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
                     rememberPreferences<span class="token punctuation">:</span> <span class="token boolean">true</span>
@@ -71,13 +74,13 @@ I have found this library rather convenient as it provides many ways to interact
             <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
                 <span class="token function">removeCookie</span><span class="token punctuation">(</span><span class="token string">"test-opt-in"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
                 <span class="token function">removeCookie</span><span class="token punctuation">(</span><span class="token string">"_ga"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-                <span class="token function">setCookie</span><span class="token punctuation">(</span><span class="token string">"ga-pref-set"</span><span class="token punctuation">,</span> <span class="token string">"forbid-ga"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token function">setCookie</span><span class="token punctuation">(</span><span class="token string">"ga-pref-set"</span><span class="token punctuation">,</span> <span class="token string">"forbid-ga"</span><span class="token punctuation">,</span> cookieOPtions<span class="token punctuation">)</span><span class="token punctuation">;</span>
                 <span class="token function">setStoredPreferences</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
                     gaEnabled<span class="token punctuation">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
                     rememberPreferences<span class="token punctuation">:</span> <span class="token boolean">true</span>
                 <span class="token punctuation">}</span><span class="token punctuation">)</span>
             <span class="token punctuation">}</span>
-          <span class="token punctuation">}</span>          
+          <span class="token punctuation">}</span>
       <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span>error<span class="token punctuation">)</span> <span class="token punctuation">{</span>
           console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'error while setting preferences'</span><span class="token punctuation">,</span> error<span class="token punctuation">)</span>
       <span class="token punctuation">}</span>
