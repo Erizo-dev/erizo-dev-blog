@@ -59,7 +59,12 @@ const IndexPage = props => {
       <h2>Erizo's developer blog</h2>
       <Typography className={classes.subTitle} variant="body1">Here are my latest blog posts as a developer.
       <br />
-         I hope you can find some ideas there.Last update: changed theme main color from teal to grey!</Typography>
+         I hope you can find some ideas there.Last update:
+         <ul>
+           <li> changed theme main color from teal to grey!</li>
+           <li> added a couple of articles on Gdpr compiance.</li>
+         </ul>
+         </Typography>
       <div className={classes.postsContainer}>
         {posts.map(({ node }) => {
           const title = node.frontmatter.title || node.fields.slug

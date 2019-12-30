@@ -1,13 +1,14 @@
 import { useCookies } from "react-cookie"
 import {useState} from "react"
 
+const cookieOPtions =  { path: "/", maxAge: 3600 *24 * 30 *13}
+
 export  function useGdpr(initialPreferences) {
 
     const [cookies, setCookie, removeCookie] = useCookies()
 
 
     const [storedPreferences, setStoredPreferences] = useState( () => {
-        console.log('pref cookies', cookies["ga-pref-set"])
         return {
             rememberPreferences : cookies["ga-pref-set"] !== undefined,
             gaEnabled: cookies["ga-pref-set"]  === "allow-ga"
@@ -31,8 +32,8 @@ export  function useGdpr(initialPreferences) {
           {
 
             if (pref.gaEnabled) {
-                setCookie("test-opt-in", true);
-                setCookie("ga-pref-set", "allow-ga");
+                setCookie("test-opt-in", true, cookieOPtions);
+                setCookie("ga-pref-set", "allow-ga", cookieOPtions);
                 setStoredPreferences({
                     gaEnabled: true,
                     rememberPreferences: true
@@ -40,7 +41,7 @@ export  function useGdpr(initialPreferences) {
             } else {
                 removeCookie("test-opt-in");
                 removeCookie("_ga");
-                setCookie("ga-pref-set", "forbid-ga");
+                setCookie("ga-pref-set", "forbid-ga", cookieOPtions);
                 setStoredPreferences({
                     gaEnabled: false,
                     rememberPreferences: true

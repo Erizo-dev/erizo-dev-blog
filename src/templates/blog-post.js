@@ -27,10 +27,6 @@ const styles = theme => {
     '& pre[class*="language-"]' : {   
       fontSize: "0.8rem",
     },
-
-
-
-
   }
 }}
 

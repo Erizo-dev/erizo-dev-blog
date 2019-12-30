@@ -81,7 +81,7 @@ const Layout = ({ children, modalOpen }) => {
       <Paper className={classes.paper}>
         <Header siteTitle={data.site.siteMetadata.title} />
 
-        <Container maxWidth="sm" className={classes.root}>
+        <Container maxWidth="md" className={classes.root}>
           {children}
         </Container>
         <footer className={classes.footer}>
